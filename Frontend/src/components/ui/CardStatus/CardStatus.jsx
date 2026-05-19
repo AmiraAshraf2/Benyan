@@ -5,7 +5,7 @@ function CardStatus({ counter, title, icon }) {
         <>
             <div className={`${styles.cardStatus} d-flex align-items-center`}>
                 <div className={`${styles.icon} d-flex align-items-center justify-content-center w-100`}>
-                    <i class={`fa-solid ${icon}`}></i>
+                    <i className={`fa-solid ${icon}`}></i>
                 </div>
                 <div className={`${styles.info} w-100 d-flex flex-column align-items-center gap-2`}>
                     <span className={`${styles.counter}`}>{counter}</span>
