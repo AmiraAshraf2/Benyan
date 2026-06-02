@@ -4,20 +4,26 @@ require("dotenv").config();
 //express
 const express = require("express");
 const app = express();
+const morgan = require("morgan");
 //middleware json
 app.use(express.json());
 //connection DB
 //Simple Logger
 if (process.env.NODE_ENV === "dev") {
-    app.use((req,res,next)=>{
-        console.log(`${req.method} ${req.originalUrl}`);
-        next();
-    })
+    app.use(morgan("dev"));
+
+    // app.use((req,res,next)=>{
+    //     console.log(`${req.method} ${req.originalUrl}`);
+    //     next();
+    // })
 };
 
 //DB connect
 const connectedDB = require("./config/db");
 connectedDB();
+
+const adminRoutes = require("./routes/auth.route");
+app.use("/api/dash",adminRoutes)
 
 //Test Route
 app.get("/test",(req,res)=>{

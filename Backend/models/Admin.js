@@ -13,7 +13,8 @@ const adminSchema = new mongoose.Schema({
     password:{
         type:String,
         required:[true, "Password is Required"],
-        minlength: 6
+        minlength: 6,
+        select:false
     }
 
 },{timestamps:true}
@@ -25,7 +26,7 @@ adminSchema.pre("save", async function (next) {
 })
 
 adminSchema.methods.comparePassword = async function (mathedPassword) {
-    return await bcrypt(mathedPassword,this.password);
+    return await bcrypt.compare(mathedPassword,this.password);
 }
 
 const Admin = mongoose.model("Admin", adminSchema);
